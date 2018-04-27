@@ -18,10 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('email',100)->unique();
             $table->string('password');
             $table->string('nama');
-            $table->string('salary');
+            $table->string('salary')->nullable();
             $table->string('tipe')->comment('1 EO/kafe 2 Musisi');
             $table->string('nohp');
             $table->text('alamat');
+            $table->string('verifyToken');
+            $table->boolean('is_activated')->default(0);
             $table->timestamps();
         });
     }

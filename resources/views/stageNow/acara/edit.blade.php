@@ -67,7 +67,6 @@
                                             @endif> Event Organizer
                                         </label>
                                     </div>
-                                    <br>
                                     <div class="checkbox">
                                         <label>
                                             <input name="kafe" type="checkbox" value="1"
@@ -76,12 +75,18 @@
                                             @endif> kafe
                                         </label>
                                     </div>
-                                    <br>
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Gaji</label>
                                     <input type="text" class="form-control" id="salary" name="salary" placeholder="salary" value="{{$acara->salary}}">
                                 </div>
+                                <label for="wilayahh">Wilayah</label>
+                                <select type="text" id="wilayah_id" name="wilayah_id" class="form-control" required=""'>
+                                    <option value="">-- Pilih Wilayah Acara --</option>
+                                    @foreach(\App\modelWilayah::all() as $cihuy)
+                                    <option value="{{ $cihuy->id }}">{{ $cihuy->nama }}</option>
+                                    @endforeach
+                                </select>
                                 <br>
                                 <div class="form-group">
                                     <label for="email">Foto Lama:</label>

@@ -2,14 +2,16 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class acara extends Model
 {
-    protected $table = 'acaras';
+	use Searchable;
 
-    public function getRouteKeyName()
+	public function searchableAs()
     {
-    	return 'judul';
+        return 'judul';
     }
+    protected $table = 'acaras';
 }

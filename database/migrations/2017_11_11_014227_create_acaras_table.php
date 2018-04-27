@@ -17,6 +17,7 @@ class CreateAcarasTable extends Migration
            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('judul');
+            $table->integer('wilayah_id')->unsigned();
             $table->string('salary');
             $table->text('deskripsi');
             $table->text('foto');
@@ -24,12 +25,15 @@ class CreateAcarasTable extends Migration
             $table->datetime('tanggal_mulai');
             $table->datetime('tanggal_berakhir');
             $table->text('alamat');
+            $table->string('lat');
+            $table->string('long');
             $table->string('statusAcara')->comment('1 iya 0 tidak')->default(1);
             $table->string('eventOrganizer')->comment('1 iya 0 tidak')->default(0);
             $table->string('kafe')->comment('1 iya 0 tidak')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('wilayah_id')->references('id')->on('wilayah');
         });
     }
 

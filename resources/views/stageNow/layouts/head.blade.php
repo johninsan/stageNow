@@ -25,6 +25,10 @@
   <link rel="stylesheet" href="{{ asset('acara/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('acara/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+
+    <!-- Sweet Alert -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
   @section('headSection')
     @show
 
@@ -37,4 +41,40 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBwLGUavgzt736k8qtuAZSM1C-21s_YQ3U"></script>
+  <script>
+
+
+      function initialize() {
+          var address = (document.getElementById('pac-input'));
+          var autocomplete = new google.maps.places.Autocomplete(address);
+          autocomplete.setTypes(['geocode']);
+          google.maps.event.addListener(autocomplete, 'place_changed', function() {
+              var place = autocomplete.getPlace();
+              if (!place.geometry) {
+                  return;
+              }
+
+              var address = '';
+              if (place.address_components) {
+                  address = [
+                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                      (place.address_components[2] && place.address_components[2].short_name || '')
+                  ].join(' ');
+              }
+            /*********************************************************************/
+            /* var address contain your autocomplete address *********************/
+            /* place.geometry.location.lat() && place.geometry.location.lat() ****/
+            /* will be used for current address latitude and longitude************/
+            /*********************************************************************/
+
+              document.getElementById("lat").value = place.geometry.location.lat();
+              document.getElementById("long").value = place.geometry.location.lng();
+          });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+  </script>
 </head>

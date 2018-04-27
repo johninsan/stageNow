@@ -51,8 +51,11 @@
                                     <input type="text" class="form-control pull-right datetimepicker" name="tanggal_berakhir" data-date-format="yyyy-mm-dd H:i:s">
                                 </div>
                                 <div class="form-group">
-                                    <label for="alamat">Alamat Acara</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="input alamat">
+                                    <label for="alamat">Alamat Acara: <br><br></label>
+                                    <input type="text" class="form-control" id="txtautocomplete" name="alamat" placeholder="Alamat Mu Lur"/>
+                                    <br>
+                                    <input  type="hidden" id="lat" name="lat">
+                                    <input type="hidden" id="long" name="long">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -71,15 +74,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="alamat">Gaji</label>
+                                    <label for="gaji">Gaji</label>
                                     <input type="text" class="form-control" id="salary" name="salary" placeholder="salary">
                                 </div>
+                                 <label for="wilayahh">Wilayah</label>
+                                <select type="text" id="wilayah_id" name="wilayah_id" class="form-control" required=""'>
+                                    <option value="">-- Pilih Wilayah Acara --</option>
+                                    @foreach(\App\modelWilayah::all() as $cihuy)
+                                    <option value="{{ $cihuy->id }}">{{ $cihuy->nama }}</option>
+                                    @endforeach
+                                </select>
+                                <br>
                                 <div class="form-group pull-left">
-                                <div class="pull-right">
-                                    <label for="foto">Upload Foto</label>
-                                    <input type="file" name="foto" id="foto">
-                                </div>
-                            </div>  
+                                    <div class="pull-right">
+                                        <label for="foto">Upload Foto</label>
+                                        <input type="file" name="foto" id="foto">
+                                    </div>
+                                </div>  
                             </div>
                         </div>
                         <div class="box-footer">
@@ -114,5 +125,22 @@
     //     });
     // });
     $( ".datetimepicker" ).datetimepicker();
+</script>
+<script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', intilize);
+    function intilize() {
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById("txtautocomplete"));
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+            var place = autocomplete.getPlace();
+            var lat = place.geometry.location.lat();
+            var lng = place.geometry.location.lng();
+            document.getElementById('lat').value = lat
+            document.getElementById('long').value = lng
+        });
+
+    };
+
 </script>
 @endsection

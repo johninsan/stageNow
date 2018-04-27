@@ -42,5 +42,10 @@
           <!-- Control Sidebar Toggle Button -->
         </ul>
       </div>
+      <script type="text/javascript">
+        function sweet(){
+            swal("Good job!", "You clicked the button!", "success");
+        }
+    </script>
     </nav>
   </header>

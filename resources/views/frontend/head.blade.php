@@ -58,6 +58,8 @@
         margin: 0 auto;
     }
 </style>
+@section('headSection')
+@show
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>

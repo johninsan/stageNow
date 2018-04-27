@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\acara;
 use App\modelPesan;
+use App\modelWilayah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -51,10 +52,53 @@ class AcaraFrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function search($searcKey)
+    {
+        // $users = acara::search($searchKey)->get(); return $users;
+        // $searchKey = $request->searchKey;
+        $user = acara::search($searchKey)->paginate(2);
+        $data = [
+            'user' => $user
+        ];
+        return view('frontend.user.index',$data);
+    }
     public function create()
     {
         //
     }
+
+    public function wilayah($wilayah_id)
+    {
+       $idasli = base64_decode($wilayah_id);
+        $user = acara::where('wilayah_id',$idasli)->paginate(2);
+
+        $data = [
+            'user' => $user,
+        ];
+        if(count($data) > 0){
+            return view('frontend.user.index',$data);
+        }
+        else{
+            return back()->with('warning','data di wilayah tersebut tidak di temukan!');
+        }
+    }
+
+     public function wilayahNasional($id)
+    {
+       $idasli = base64_decode($id);
+        $user = acara::where('id',$idasli)->paginate(2);
+
+        $data = [
+            'user' => $user,
+        ];
+        if(count($data) > 0){
+            return view('frontend.user.index',$data);
+        }
+        else{
+            return back()->with('warning','data di wilayah tersebut tidak di temukan!');
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.

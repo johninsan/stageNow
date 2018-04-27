@@ -28,7 +28,7 @@
           <ul class="treeview-menu">
             <li class="active"><a href="{{ route('stageNow.home') }}"><i class="fa fa-home"></i> Home</a></li>
             <li class="active"><a href="{{ route('acara.index') }}"><i class="fa fa-calendar-o"></i> Acara</a></li>
-            <li class="active"><a href="#"><i class="fa fa-envelope"></i> Pesan</a></li>
+            <li class="active"><a href="{{ route('pesan.index') }}"><i class="fa fa-envelope"></i> Pesan</a></li>
             <li class="active"><a href="{{ route('stageNow.musisi') }}"><i class="fa fa-user"></i> Musisi</a></li>
           </ul>
         </li>

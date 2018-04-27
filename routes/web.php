@@ -12,22 +12,36 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.homepage.homepage');
+	return view('frontend.homepage.homepage');
 });
- Route::get('home','AcaraFrontendController@index');
-  Route::get('kafe','AcaraFrontendController@kafe');
-  Route::get('eventOrganizer','AcaraFrontendController@eo');
- Route::get('acara/{id}','AcaraFrontendController@show');
+//pesan routes
+Route::get('home/pesan','PesanController@sentUser');
+Route::get('pesan/detail/{kode}','PesanController@getDetailMessage');
+Route::post('messagePost','PesanController@messagePost');
+Route::post('messageReply','PesanController@messageReply');
+Route::post('messageAcaraReply','PesanAcaraController@messageAcaraReply');
+//web routes
+Route::get('home','AcaraFrontendController@index');
+Route::get('home/wilayah/{id}','AcaraFrontendController@wilayahNasional');
+Route::get('kafe','AcaraFrontendController@kafe');
+Route::get('eventOrganizer','AcaraFrontendController@eo');
+Route::get('acara/{id}','AcaraFrontendController@show');
+Route::get('acara/wilayah/{id}','AcaraFrontendController@wilayah');
+  //search route
+Route::get('/search/{searchKey}','AcaraFrontendController@search');
+
 
 Route::group(['namespace' => 'Acara'],function (){
-    //Tag Routes
-    Route::resource('stageNow/acara','acaraController');
-    Route::get('stageNow/home','HomeController@index')->name('stageNow.home');
-    Route::get('stageNow/musisi','acaraController@musisi')->name('stageNow.musisi');
+	Route::resource('stageNow/acara','acaraController');
+	Route::get('stageNow/home','HomeController@index')->name('stageNow.home');
+	Route::get('stageNow/musisi','acaraController@musisi')->name('stageNow.musisi');
+	Route::resource('pesan','PesanAcaraController');
 });
 
 Route::get('login','userController@login');
 Route::get('logout','userController@logout');
+Route::get('verify/{email}/{verifyToken}', 'PesanController@sendEmailDone')->name('sendEmailDone');
+//Route::get('/user/activation/{token}', 'userController@userActivation');
 
 Route::post('loginPost','userController@loginPost');
 Route::post('registerPost','userController@registerPost');

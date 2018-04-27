@@ -60,8 +60,8 @@ class acaraController extends Controller
         $acara->user_id = Session::get('id');
         $acara ->judul = $request ->judul;
         $acara ->deskripsi = $request ->deskripsi;
-        //$acara ->latitude = $request ->lat;
-        //$acara ->longitude = $request ->long;
+        $acara ->lat = $request ->lat;
+        $acara ->long = $request ->long;
         $file = $request->file('foto');
         if(empty($file)){
             $acara->urlfoto = null;
@@ -79,6 +79,7 @@ class acaraController extends Controller
         $acara ->tanggal_berakhir = $request ->tanggal_berakhir;
         $acara ->alamat = $request ->alamat;
         $acara ->salary = $request ->salary;
+        $acara ->wilayah_id = $request ->wilayah_id;
 
         if(empty($request ->eventOrganizer)){
             $acara ->eventOrganizer = 0;
@@ -167,6 +168,7 @@ class acaraController extends Controller
         $acara ->tanggal_berakhir = $request ->tanggal_berakhir;
         $acara ->alamat = $request ->alamat;
         $acara ->salary = $request ->salary;
+        $acara ->wilayah_id = $request ->wilayah_id;
 
         if(empty($request ->eventOrganizer)){
             $acara ->eventOrganizer = 0;
