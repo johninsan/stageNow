@@ -43,11 +43,13 @@ class UserController extends Controller
                     }
                   }
                   else{
-                    return redirect('login')->with('danger','Verifikasi Emailmu!');
+                    return redirect('login')->with('alert-success', '<script> window.onload = swal ( "Oops !" ,  "Verifiksi emailmu!" ,  "error" )</script>');
+                    // ->with('danger','Verifikasi Emailmu!');
                   }
                 } else {
-                	return redirect('login')->with('danger','Password atau email salah!');
-                	// ->with('alert-success', '<script> window.onload = swal ( "Oops !" ,  "Password atau Email kamu Salah!" ,  "error" )</script>');
+                	return redirect('login')->with('alert-success', '<script> window.onload = swal ( "Oops !" ,  "Password atau emailmu salah!" ,  "error" )</script>');
+                  //->with('danger','Password atau email salah!');
+                	
                 }
               }
         //}
@@ -59,8 +61,8 @@ class UserController extends Controller
 
            public function logout(){
              Session::flush();
-             return redirect('/')->with('message','Kamu telah logout!');
-    	// return redirect('login')->with('alert-success','<script> window.onload = swal("Sukses!", "Kamu telah logout!", "success")</script>');
+             //return redirect('/')->with('message','Kamu telah logout!');
+    	return redirect('/')->with('alert-success','<script> window.onload = swal("Sukses!", "Kamu telah logout!", "success")</script>');
            }
 
 //    public function register(Request $request){
@@ -92,7 +94,8 @@ class UserController extends Controller
           // DB::table('user_activations')->insert(['id_user'=>$data['id'],'token'=>$confirmation_code['link']]);
             $thisUser = modelUser::findOrFail($data->id);
             $this->send($thisUser);
-            return redirect()->to('login')->with('success',"Silahkan cek inbox atau folder spam email anda .");
+            return redirect()->to('login')->with('alert-success','<script> window.onload = swal("Sukses!", "Aktivasi akunmu! Cek inbox atau folder spam email anda!", "success")</script>');
+            //->with('success',"Silahkan cek inbox atau folder spam email anda .");
           }
           public function send($thisUser)
           {

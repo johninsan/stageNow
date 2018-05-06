@@ -1,5 +1,8 @@
 @extends('frontend.base')
 @section('section')
+@if(\Illuminate\Support\Facades\Session::has('alert-success'))
+    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+@endif
 <!--begin blog -->
 <section class="section-white small-padding">
 
@@ -8,7 +11,8 @@
 
     <!--begin row-->
     <div class="row">
-
+      <div class="container">
+      </div>
       <!--begin col-sm-8 -->
       <div class="col-sm-8">
 
@@ -46,15 +50,31 @@
       </div>
       <!--end col-sm-8-->
       <!--begin col-sm-4 -->
-      <div class="col-sm-4 margin-top-20"> 
-       <div>
-        @if ($message = Session::get('warning'))
-        <div class="alert alert-warning">
-          <p>
-            {{ $message }}
-          </p>
+      <div class="col-sm-4 margin-top-10">
+        <div class="col-md-12">
+          <div class="search-container">
+            {{-- <form action="/search" method="get">
+              <input type="text" id="query" placeholder="Cari acara disini" name="query">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form> --}}
+            <form method="get" action="/search">
+              <input type="text" id="query" name="query" class="textbox" placeholder="Search">
+              <input title="Search" value="" type="submit" class="button fa fa-search">
+            </form>
+          </div>
         </div>
-        @endif
+        <div class="col-md-12 margin-top-10">
+          <!--begin recent_posts -->    
+          <h5>Acara Terbaru</h5>
+          @foreach($recent as $recents)
+          <div class="sidebar_posts">
+            <a href="#" title=""><img src="{{ url('uploads/foto') }}/{{ $recents->foto }}" alt=""></a>
+            <a href="/acara/{{base64_encode($recents->id)}}" title="">{{ $recents->judul }}</a>
+            <span class="sidebar_post_date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($recents->created_at))->diffForHumans() }}</span>
+          </div>
+          @endforeach
+        </div>
+       {{-- <div>
         <h5>Wilayah:</h5>                    
         <ul class="tags">
           @foreach(\App\modelWilayah::all() as $y)
@@ -64,26 +84,18 @@
           @endforeach  
         </ul>
         <!--end tags --> 
-
-      </div>
+      </div> --}}
     </div>
-                {{-- <small>Cari Acara disini...</small>
-                   <div class="search-container">
-                    <form action="/search" method="get">
-                        {{csrf_field()}}
-                      <input type="text" placeholder="Cari acara disini" name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                  </form>
-                </div> --}}
-                <!--begin recent_posts -->
-              </div>
-              <!--end col-sm-4-->
 
-            </div>
-            <!--end row-->  
+    <!--begin recent_posts -->
+  </div>
+  <!--end col-sm-4-->
 
-          </div>
-          <!--end container-->
+</div>
+<!--end row-->  
 
-        </section>
-        @endsection
+</div>
+<!--end container-->
+
+</section>
+@endsection

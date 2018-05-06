@@ -1,5 +1,8 @@
 @extends('frontend.base')
 @section('section')
+@if(\Illuminate\Support\Facades\Session::has('alert-success'))
+    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+@endif
 <section class="section-white small-padding">
     <!--begin container-->
     <div class="container padding-bottom-40">

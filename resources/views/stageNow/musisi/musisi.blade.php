@@ -45,7 +45,6 @@
                                 <th>S.No</th>
                                 <th>Nama</th>
                                 <th>Salary</th>
-                                <th>Review</th>
                                 <th>Kirim Pesan</th>
                             </tr>
                         </thead>
@@ -56,7 +55,6 @@
                                 <td>{{$x ->nama}}
                                 </td>
                                 <td>Rp. {{number_format($x->salary , "2", ",", ".") }}</td>
-                                <td><a href="#"><span class="fa fa-commenting-o"></span></a></td>
                                  <td><a href="#"><span class="fa fa-envelope"></span></a></td>
                             </tr>
                             @endforeach
@@ -66,7 +64,6 @@
                                 <th>S.No</th>
                                 <th>Nama</th>
                                 <th>Salary</th>
-                                <th>Review</th>
                                 <th>Kirim Pesan</th>
                             </tr>
                         </tfoot>

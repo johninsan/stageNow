@@ -1,7 +1,6 @@
 @extends('stageNow/layouts/app')
 @section('headSection')
 <link rel="stylesheet" href="{{ asset('acara/plugins/timepicker/jquery.datetimepicker.min.css') }}">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 @endsection
 @section('main-content')
 <!-- Content Wrapper. Contains page content -->
@@ -115,7 +114,6 @@
 @section('footerSection')
 <script src="{{ asset('acara/plugins/timepicker/jquery.datetimepicker.full.js') }}"></script>
 <script src="{{ asset('acara/plugins/timepicker/jquery.datetimepicker.full.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
     // $(function() {
     //     $( ".datepicker" ).datepicker({

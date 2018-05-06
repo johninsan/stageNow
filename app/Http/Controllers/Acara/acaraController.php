@@ -94,7 +94,7 @@ class acaraController extends Controller
             $acara ->kafe = $request ->kafe;
         }
         $acara -> save();
-        return redirect(route('acara.index'));
+        return redirect(route('acara.index'))->with('message','Acara berhasil ditambahkan');
 
         
         //$acara ->user_id = 19; //error child and parrent constraint
@@ -183,7 +183,7 @@ class acaraController extends Controller
             $acara ->kafe = $request ->kafe;
         }
         $acara -> save();
-        return redirect(route('acara.index'));
+        return redirect(route('acara.index'))->with('message','Acara berhasil di edit');
     }
 
     /**
@@ -196,6 +196,6 @@ class acaraController extends Controller
     {
         acara::where('id',$id) ->delete();
         // return redirect()->route('acara.index')->with('sweet-alert','<script> window.onload = swal("Sukses!", "Acara Telah Dihapus!!", "success")</script>');
-        return redirect()->back()->with('message','data has been deleted');
+        return redirect()->back()->with('message','Acara telah di hapus!');
     }
 }

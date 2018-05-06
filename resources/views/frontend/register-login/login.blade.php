@@ -32,7 +32,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </script>
 </head>
 <body>
-
+@if(\Illuminate\Support\Facades\Session::has('alert-success'))
+    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+@endif
 <div class="container">
   <h2>Stage Now</h2>
   <ul class="nav nav-tabs">
@@ -46,31 +48,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <h1 style="color: #0b3e6f"> Daftar Akun</h1>
             <hr>
             <div class="clearfix"> </div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
             <form action="/registerPost" method="post">
-                @if ($message = Session::get('success'))
-                          <div class="alert alert-success">
-                            <p>
-                              {{ $message }}
-                            </p>
-                          </div>
-                        @endif
-                        @if ($message = Session::get('warning'))
-                          <div class="alert alert-warning">
-                            <p>
-                              {{ $message }}
-                            </p>
-                          </div>
-                        @endif
                 {{csrf_field()}}
                 <input type="email" name="email" class="form-control" placeholder="Email" required="">
                 <br>
@@ -106,13 +84,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <hr>
         <div class="col-md-6">
             <form action="/loginPost" method="post">
-                @if ($message = Session::get('danger'))
-                    <div class="alert alert-danger">
-                        <p>
-                              {{ $message }}
-                        </p>
-                    </div>
-                @endif
                 {{csrf_field()}}
                 <div class="col-md-1">
                     <i class="fa fa-envelope"></i>

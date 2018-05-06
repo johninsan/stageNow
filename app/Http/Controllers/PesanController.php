@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotifPesan;
 use App\modelPesan;
 use App\modelPesanHeader;
 use App\modelUser;
@@ -102,9 +103,15 @@ class PesanController extends Controller
                     $data->url_lampiran = null;
                 }
                 $data->save();
-                return back();
+                $thisUser = modelUser::findOrFail($data->penerima_id);
+                $this->kirim($thisUser);
+                return back()->with('alert-success','<script> window.onload = swal("Sukses!", "Pesan anda telah terkirim!", "success")</script>');
             }
     }
+     public function kirim($thisUser)
+          {
+            Mail::to($thisUser['email'])->send(new NotifPesan($thisUser));
+          }
 
     public function messageReply(Request $request){
             $data = new modelPesan();
@@ -126,14 +133,16 @@ class PesanController extends Controller
                 $data->url_lampiran = null;
             }
             $data->save();
-            return back();
+            $thisUser = modelUser::findOrFail($data->penerima_id);
+            $this->kirim($thisUser);
+            return back()->with('alert-success','<script> window.onload = swal("Sukses!", "Pesan anda telah terkirim!", "success")</script>');
     }
     public function sendEmailDone($email,$verifyToken)
         {
           $data = modelUser::where(['email'=>$email,'verifyToken'=>$verifyToken])->first();
           if($data){
             $asep =  modelUser::where(['email'=>$email,'verifyToken'=>$verifyToken])->update(['is_activated'=>'1','verifyToken'=>NULL]);
-            return redirect()->to('login')->with('success',"Terima kasih telah mengaktifkan akun anda.");
+            return redirect()->to('login')->with('alert-success','<script> window.onload = swal("Sukses!", "Terima kasih telah memverifikasi akunmu!", "success")</script>');
           }
           else{
               return 'user not found';

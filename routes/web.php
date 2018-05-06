@@ -22,13 +22,14 @@ Route::post('messageReply','PesanController@messageReply');
 Route::post('messageAcaraReply','PesanAcaraController@messageAcaraReply');
 //web routes
 Route::get('home','AcaraFrontendController@index');
-Route::get('home/wilayah/{id}','AcaraFrontendController@wilayahNasional');
+Route::get('AboutUs','AcaraFrontendController@AboutUs');
+//Route::get('home/wilayah/{id}','AcaraFrontendController@wilayahNasional');
 Route::get('kafe','AcaraFrontendController@kafe');
 Route::get('eventOrganizer','AcaraFrontendController@eo');
 Route::get('acara/{id}','AcaraFrontendController@show');
 Route::get('acara/wilayah/{id}','AcaraFrontendController@wilayah');
   //search route
-Route::get('/search/{searchKey}','AcaraFrontendController@search');
+Route::get('/search','AcaraFrontendController@search')->name('search');
 
 
 Route::group(['namespace' => 'Acara'],function (){

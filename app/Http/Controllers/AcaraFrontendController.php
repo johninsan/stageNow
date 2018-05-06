@@ -6,44 +6,88 @@ use App\acara;
 use App\modelPesan;
 use App\modelWilayah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class AcaraFrontendController extends Controller
 {
+     use SearchableTrait;
+
+     protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'user.judul' => 10,
+            'user.deskripsi' => 10,
+            'wilayahs.name' => 5,
+        ],
+        'joins' => [
+            'wilayahs' => ['id','wilayah_id'],
+        ],
+    ];
+
+    public function wilayahs()
+    {
+        return $this->hasMany('modelWilayah');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //  public function acara(acara $judul)
-    // {
-    //     return $judul;
-    //     return view('frontend.acara.show');
-    // }
+     public function AboutUs()
+    {
+        return view('frontend.aboutus');
+    }
     public function index()
     {
-         $user = acara::paginate(2);
+        $recent = acara::where('statusAcara', 1)
+                  ->orderBy('created_at', 'desc')
+                  ->take(3)->get();
+        $user = DB::table('acaras')
+               ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
+               ->paginate(2);
+         // $user = acara::paginate(2);
 
         $data = [
-            'user' => $user
+            'user' => $user,
+            'recent' => $recent
         ];
         return view('frontend.user.index',$data);
     }
     public function kafe()
     {
-         $user = acara::where('kafe', 1)->get();
-         $user = acara::where('kafe', 1)->paginate(2);
+        $recent = acara::where('statusAcara', 1)
+                  ->orderBy('created_at', 'desc')
+                  ->take(3)->get();
+         // $user = acara::where('kafe', 1)->get();
+         $user = acara::where('kafe', 1)
+                 ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
+                 ->paginate(2);
          $data = [
-            'user' => $user
+            'user' => $user,
+            'recent' => $recent
         ];
         return view('frontend.user.index',$data);
     }
      public function eo()
     {
-         $user = acara::where('eventOrganizer', 1)->get();
-         $user = acara::where('eventOrganizer', 1)->paginate(2);
+        $recent = acara::where('statusAcara', 1)
+                  ->orderBy('created_at', 'desc')
+                  ->take(3)->get();
+         // $user = acara::where('eventOrganizer', 1)->get();
+         $user = acara::where('eventOrganizer', 1)
+                 ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
+                 ->paginate(2);
          $data = [
-            'user' => $user
+            'user' => $user,
+            'recent' => $recent
         ];
         return view('frontend.user.index',$data);
     }
@@ -52,15 +96,32 @@ class AcaraFrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search($searcKey)
+    public function search(Request $request)
     {
+        $query = $request->input('query');
+        $user = acara::search($query)->paginate(10);
+        // $request->validate([
+        //     'query' => 'required|min:3',
+        // ]);
+        // $query = $request->input('query');
+        // $user = acara::where('judul','like',"%$query%")
+        //         ->orwhere('deskripsi','like',"$query%")
+        //         ->paginate(10);
+
+
         // $users = acara::search($searchKey)->get(); return $users;
         // $searchKey = $request->searchKey;
-        $user = acara::search($searchKey)->paginate(2);
-        $data = [
-            'user' => $user
-        ];
-        return view('frontend.user.index',$data);
+        // $user = acara::search($searchKey)->paginate(2);
+        // $data = [
+        //     'user' => $user
+        // ];
+        if(count($user) > 0){
+            return view('frontend.user.search-result',compact('user'));
+        }
+        else{
+            return back()->with('sweet-alert','<script> window.onload = swal ( "Oops !" ,  "Kami tidak dapat menemukan data tersebut!!" ,  "error" )</script>');
+        }
+        //return view('frontend.user.search-result',compact('user'));
     }
     public function create()
     {
@@ -71,22 +132,6 @@ class AcaraFrontendController extends Controller
     {
        $idasli = base64_decode($wilayah_id);
         $user = acara::where('wilayah_id',$idasli)->paginate(2);
-
-        $data = [
-            'user' => $user,
-        ];
-        if(count($data) > 0){
-            return view('frontend.user.index',$data);
-        }
-        else{
-            return back()->with('warning','data di wilayah tersebut tidak di temukan!');
-        }
-    }
-
-     public function wilayahNasional($id)
-    {
-       $idasli = base64_decode($id);
-        $user = acara::where('id',$idasli)->paginate(2);
 
         $data = [
             'user' => $user,

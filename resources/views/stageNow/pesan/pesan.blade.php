@@ -1,5 +1,8 @@
 @extends('stageNow/layouts/app')
 @section('main-content')
+@if(\Illuminate\Support\Facades\Session::has('alert-success'))
+    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+@endif
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -88,7 +91,7 @@
 										<div class="form-group">
 											<label class="col-sm-2" for="inputTo">Kepada</label>
 											<input type="hidden" id="modal_idacara" name="idAcara" class="form-control" value="{{ $pesans->acara_id }}">
-											<input type="hidden" id="modal_idpenerima" name="idPenerima" class="form-control" value="{{ $pesans->penerima_id }}">
+											<input type="hidden" id="modal_idpenerima" name="idPenerima" class="form-control" value="{{ $pesans->pengirim_id }}">
 											<input type="hidden" id="modal_kode" name="kode" class="form-control" value="{{ $pesans->kode }}">
 
 											<div class="col-sm-10"><input disabled type="text" class="form-control" id="modal_nama" placeholder="comma separated list of recipients" value="{{ $users->nama }}"></div>

@@ -24,11 +24,11 @@
                 <!-- begin nav -->
                 <ul class="nav navbar-nav text-right">
                     @if(!\Illuminate\Support\Facades\Session::get('login'))
-                    <li><a class="selected" href="/">Home</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a class="" href="/">Home</a></li>
+                    <li><a href="/AboutUs">About Us</a></li>
                     <li><a href="/login" class="purchase scrool">Sign Up and Login</a></li>
                     @else
-                    <li><a class="selected" href="/">Home</a></li>
+                    <li><a class="" href="/">Home</a></li>
                     <li class="dropdown"><a href="portfolio-main.html" data-toggle="dropdown" class="dropdown-toggle">Event</a>
                       <ul role="menu" class="dropdown-menu">
                         <li><a tabindex="-1" href="/home">All Event</a></li>
@@ -39,7 +39,7 @@
                         <li class="divider"></li>
                     </ul>
                 </li>
-                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="/AboutUs">About Us</a></li>
                 <li><a href="/logout" class="purchase scrool">Sign Out</a></li>
                 @endif
                 <li class="dropdown hidden-nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle">How to Reach Us</a>

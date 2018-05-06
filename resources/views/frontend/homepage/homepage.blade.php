@@ -1,6 +1,8 @@
 @extends('frontend.base')
 @section('section')
-
+@if(\Illuminate\Support\Facades\Session::has('alert-success'))
+    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+@endif
 @include('frontend.homepage.slider')
         
     <!--begin fun-facts -->
