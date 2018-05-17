@@ -30,7 +30,8 @@ Route::get('acara/{id}','AcaraFrontendController@show');
 Route::get('acara/wilayah/{id}','AcaraFrontendController@wilayah');
   //search route
 Route::get('/search','AcaraFrontendController@search')->name('search');
-
+	//sort wilayah by ajax
+Route::get('/wilayahsort','AcaraFrontendController@wilayahsort');
 
 Route::group(['namespace' => 'Acara'],function (){
 	Route::resource('stageNow/acara','acaraController');
@@ -46,3 +47,12 @@ Route::get('verify/{email}/{verifyToken}', 'PesanController@sendEmailDone')->nam
 
 Route::post('loginPost','userController@loginPost');
 Route::post('registerPost','userController@registerPost');
+
+//Admin Routes
+Route::get('admin/home','AdminController@index')->name('admin.home');
+Route::post('adminloginPost','AdminController@adminloginPost');
+Route::get('admin-login','AdminController@login');
+Route::get('admin/acara','AdminController@status')->name('admin.acara');
+Route::get('admin/acara/edit/{id}','AdminController@edit')->name('admin.edit');
+Route::post('ubahstatus/{id}','AdminController@ubahstatus');
+Route::get('logoutadmin','AdminController@logoutadmin');

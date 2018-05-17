@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.html" class="navbar-brand brand scrool"><img src="/frontend/images/logo.png" alt="Logo"></a>
+                <a href="/" class="navbar-brand brand scrool"><img src="/frontend/images/logo.png" alt="Logo"></a>
             </div>
             <!-- end navbar-header -->
 
@@ -25,21 +25,21 @@
                 <ul class="nav navbar-nav text-right">
                     @if(!\Illuminate\Support\Facades\Session::get('login'))
                     <li><a class="" href="/">Home</a></li>
-                    <li><a href="/AboutUs">About Us</a></li>
-                    <li><a href="/login" class="purchase scrool">Sign Up and Login</a></li>
+                    <li><a href="/AboutUs">Tentang Kami</a></li>
+                    <li><a href="/login" class="purchase scrool">Daftar dan Login</a></li>
                     @else
                     <li><a class="" href="/">Home</a></li>
                     <li class="dropdown"><a href="portfolio-main.html" data-toggle="dropdown" class="dropdown-toggle">Event</a>
                       <ul role="menu" class="dropdown-menu">
-                        <li><a tabindex="-1" href="/home">All Event</a></li>
+                        <li><a tabindex="-1" href="/home">Semua Acara</a></li>
                         <li class="divider"></li>
                         <li><a tabindex="-1" href="/eventOrganizer">Event Organizer</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" href="/kafe">Kafe</a></li>
+                        <li><a tabindex="-1" href="/kafe">Acara Kafe</a></li>
                         <li class="divider"></li>
                     </ul>
                 </li>
-                <li><a href="/AboutUs">About Us</a></li>
+                <li><a href="/AboutUs">Tentang Kami</a></li>
                 <li><a href="/logout" class="purchase scrool">Sign Out</a></li>
                 @endif
                 <li class="dropdown hidden-nav-item"><a href="#" data-toggle="dropdown" class="dropdown-toggle">How to Reach Us</a>

@@ -76,25 +76,7 @@
                         </div>
 
                         <!-- LAYER NR. 4 -->
-                        <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0" 
-                             id="slide-130-layer-4" 
-                             data-x="['left']" data-hoffset="['0']" 
-                             data-y="['center']" data-voffset="['85']" 
-                                        data-width="none"
-                            data-height="none"
-                            data-whitespace="nowrap"
-                            data-transform_idle="o:1;"
-                            data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
-                            data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
-
-                            data-frames='[{"delay":0,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                            data-splitin="none" 
-                            data-splitout="none" 
-                            data-responsive_offset="on" 
-                            data-responsive="on"
-                            
-                            style="z-index: 8; padding: 16px 35px; border: 2px solid #ffffff!important; border-radius: 5px; background-color: rgba(0, 0, 0, 0); line-height: 17px; margin: 0px; letter-spacing: 2px; font-size: 13px; white-space: nowrap;outline:none;box-shadow:none;">READ MORE 
-                        </div>
+                        
 
                     </li>
                     <!-- SLIDE 1  -->
@@ -170,25 +152,7 @@
                         </div>
 
                         <!-- LAYER NR. 8 -->
-                        <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0" 
-                             id="slide-130-layer-8" 
-                             data-x="['left']" data-hoffset="['0']" 
-                             data-y="['center']" data-voffset="['85']" 
-                                        data-width="none"
-                            data-height="none"
-                            data-whitespace="nowrap"
-                            data-transform_idle="o:1;"
-                            data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
-                            data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
-
-                            data-frames='[{"delay":0,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                            data-splitin="none" 
-                            data-splitout="none" 
-                            data-responsive_offset="on" 
-                            data-responsive="on"
-                            
-                            style="z-index: 8; padding: 16px 35px; border: 2px solid #ffffff!important; border-radius: 5px; background-color: rgba(0, 0, 0, 0); line-height: 17px; margin: 0px; letter-spacing: 2px; font-size: 13px; white-space: nowrap;outline:none;box-shadow:none;">READ MORE 
-                        </div>
+                        
 
                     </li>
                     <!-- SLIDE2  -->
@@ -264,25 +228,7 @@
                         </div>
 
                         <!-- LAYER NR. 12 -->
-                        <div class="tp-caption Newspaper-Button rev-btn  rs-parallaxlevel-0" 
-                             id="slide-130-layer-12" 
-                             data-x="['left']" data-hoffset="['0']" 
-                             data-y="['center']" data-voffset="['85']" 
-                                        data-width="none"
-                            data-height="none"
-                            data-whitespace="nowrap"
-                            data-transform_idle="o:1;"
-                            data-transform_hover="o:1;rX:0;rY:0;rZ:0;z:0;s:300;e:Power1.easeInOut;"
-                            data-style_hover="c:rgba(0, 0, 0, 1.00);bg:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);cursor:pointer;"
-
-                            data-frames='[{"delay":0,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                            data-splitin="none" 
-                            data-splitout="none" 
-                            data-responsive_offset="on" 
-                            data-responsive="on"
-                            
-                            style="z-index: 8; padding: 16px 35px; border: 2px solid #ffffff!important; border-radius: 5px; background-color: rgba(0, 0, 0, 0); line-height: 17px; margin: 0px; letter-spacing: 2px; font-size: 13px; white-space: nowrap;outline:none;box-shadow:none;">READ MORE 
-                        </div>
+                        
 
                     </li>
                     <!-- SLIDE 3  -->

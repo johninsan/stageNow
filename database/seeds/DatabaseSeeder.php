@@ -11,6 +11,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create(); //import library faker
+        $limit = 5; //batasan berapa banyak data
+        for ($i = 0; $i < $limit; $i++) {
+            DB::table('admins')->insert([ //mengisi datadi database
+                'nama' => $faker->name,
+                'email' => $faker->unique()->email, //email unique sehingga tidak ada yang sama
+                'password' => bcrypt('secret'),
+                'nohp' => $faker->phoneNumber,
+                'alamat' => $faker->address,
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+
         DB::table('user_type')->insert([ //mengisi datadi database
             'nama' => 'EventOrganizer/Kafe',
             'deskripsi' => 'NULL',

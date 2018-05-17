@@ -34,8 +34,8 @@
         <!--begin blog-item -->
         <div class="blog-item">
 
-          <h1>Search Result</h1>
-          <p>{{$user->total()}} Results for {{request()->input('query')}}</p>
+          <h1>Hasil Pencarian</h1>
+          <p>{{$user->total()}} Hasil dari {{request()->input('query')}}</p>
           <table class="table table-striped">
             <thead>
               <tr>

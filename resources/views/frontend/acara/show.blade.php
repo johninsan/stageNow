@@ -1,7 +1,7 @@
 @extends('frontend.base')
 @section('section')
 @if(\Illuminate\Support\Facades\Session::has('alert-success'))
-    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+{!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
 @endif
 <section class="section-white small-padding">
     <!--begin container-->
@@ -27,7 +27,6 @@
                         <p style="font-weight: 900;">{{ $x->judul }}</p>
                         <p>{{ $x->deskripsi }}</p>
                     </div>
-                    @endforeach
                     <table class="table">
                         <tbody>
                             <tr>
@@ -46,6 +45,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    @endforeach
                     @if(($countpesan) < 1)
                     @if(\Illuminate\Support\Facades\Session::get('tipe') != 1 OR \Illuminate\Support\Facades\Session::get('tipe') != 2)
                     <hr>
@@ -57,37 +57,37 @@
                     @endif
                     <!--end blog-item-inner -->
                     <!--end post_author -->
-                </div>
-            </div>
-            <!--end col-sm-8-->
-            <!--begin col-sm-4 -->
-            <div class="col-sm-4 margin-top-20">
-                <div class="col-md-12">
-                <!--begin recent_posts -->    
-                <h5>Acara Terbaru</h5>
-                @foreach($recent as $recents)
-                <div class="sidebar_posts">
+                    </div>
+                    </div>
+                    <!--end col-sm-8-->
+                    <!--begin col-sm-4 -->
+                    <div class="col-sm-4 margin-top-20">
+                    <div class="col-md-12">
+                    <!--begin recent_posts -->    
+                    <h5>Acara Terbaru</h5>
+                    @foreach($recent as $recents)
+                    <div class="sidebar_posts">
                     <a href="#" title=""><img src="{{ url('uploads/foto') }}/{{ $recents->foto }}" alt=""></a>
                     <a href="/acara/{{base64_encode($recents->id)}}" title="">{{ $recents->judul }}</a>
                     <span class="sidebar_post_date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($recents->created_at))->diffForHumans() }}</span>
                 </div>
                 @endforeach
-                </div>
-                @foreach($acaras as $x)
-                <div class="col-md-12">
-                    <h5>Wilayah:</h5>
-                    @foreach(\App\modelWilayah::where('id',$x->wilayah_id)->get() as $y)
-                    <ul class="tags">
-                        <li>
-                            <a href="{{url('acara/wilayah/'.base64_encode($x->wilayah_id))}}">{{$y -> nama }}</a>
-                        </li>
-                    </ul>
-                    <!--end tags --> 
-                    @endforeach      
-                </div>
-                @endforeach
-                <div class="col-md-12">
-                    <script type="text/javascript" src="http://maps.google.com/maps/api/js?=false&key=AIzaSyBwLGUavgzt736k8qtuAZSM1C-21s_YQ3U"></script>
+            </div>
+            @foreach($acaras as $x)
+            <div class="col-md-12">
+                <h5>Wilayah:</h5>
+                @foreach(\App\modelWilayah::where('id',$x->wilayah_id)->get() as $y)
+                <ul class="tags">
+                    <li>
+                        <a href="{{url('acara/wilayah/'.base64_encode($x->wilayah_id))}}">{{$y -> nama }}</a>
+                    </li>
+                </ul>
+                <!--end tags --> 
+                @endforeach      
+            </div>
+            @endforeach
+            <div class="col-md-12">
+                <script type="text/javascript" src="http://maps.google.com/maps/api/js?=false&key=AIzaSyBwLGUavgzt736k8qtuAZSM1C-21s_YQ3U"></script>
                 @foreach($acaras as $x)
                 <h4>Peta Acara</h4>
                 <input type="hidden" id="lat" value="{{ $x->lat }}">
@@ -117,13 +117,13 @@
                     });
                 </script>
                 @endforeach
-                </div>
             </div>
-            <!--end col-sm-4-->
         </div>
-        <!--end row-->
+        <!--end col-sm-4-->
     </div>
-    <!--end container-->
+    <!--end row-->
+</div>
+<!--end container-->
 </section>
 <!-- /.modal compose message -->
 <div class="modal fade" id="modalCompose">
@@ -133,7 +133,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Kirim Pesan</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="height: 340px;">
                 <form role="form" class="form-horizontal" action="/messagePost" method="post" enctype="multipart/form-data">
                     @foreach($acaras as $acara)
                     {{csrf_field()}}
@@ -152,12 +152,12 @@
                         <div class="col-sm-12"><input type="file" class="form-control" id="inputSubject" placeholder="subject" name="lampiran"></div>
                     </div>
                     @endforeach
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+                </div>
+            </form>
         </div>
         <!-- /.modal-content -->
     </div>

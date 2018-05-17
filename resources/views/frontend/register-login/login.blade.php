@@ -107,7 +107,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
 </div>
 <div class="copy-right w3l-agile text-center" style="margin-top: 30px;">
-    <strong>Copyright &copy; {{Carbon\carbon::now()->year}} <a style="font-size: 25px" href="#">StageNow</a>.</strong>
+    <strong>Copyright &copy; 2018-{{Carbon\carbon::now()->year}} <a style="font-size: 25px" href="#">StageNow</a>.</strong>
 </div>
 </body>
 </html>

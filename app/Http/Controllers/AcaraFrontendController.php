@@ -50,7 +50,7 @@ class AcaraFrontendController extends Controller
         $recent = acara::where('statusAcara', 1)
                   ->orderBy('created_at', 'desc')
                   ->take(3)->get();
-        $user = DB::table('acaras')
+        $user = DB::table('acaras')->where('statusAcara',1)
                ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
                ->paginate(2);
          // $user = acara::paginate(2);
@@ -68,6 +68,7 @@ class AcaraFrontendController extends Controller
                   ->take(3)->get();
          // $user = acara::where('kafe', 1)->get();
          $user = acara::where('kafe', 1)
+                 ->where('statusAcara',1)
                  ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
                  ->paginate(2);
          $data = [
@@ -83,6 +84,7 @@ class AcaraFrontendController extends Controller
                   ->take(3)->get();
          // $user = acara::where('eventOrganizer', 1)->get();
          $user = acara::where('eventOrganizer', 1)
+                 ->where('statusAcara',1)
                  ->orderByRaw('tanggal_mulai - tanggal_berakhir ASC')
                  ->paginate(2);
          $data = [
@@ -99,7 +101,8 @@ class AcaraFrontendController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $user = acara::search($query)->paginate(10);
+        $user = acara::search($query)
+        ->paginate(10);
         // $request->validate([
         //     'query' => 'required|min:3',
         // ]);
@@ -123,6 +126,26 @@ class AcaraFrontendController extends Controller
         }
         //return view('frontend.user.search-result',compact('user'));
     }
+    public function wilayahsort(Request $request)
+    {
+        $wil_id = $request->wil_id;
+         $user = DB::table('acaras')->where('statusAcara',1)
+        ->join('wilayah','wilayah.id','acaras.wilayah_id')
+        ->where('acaras.wilayah_id',$wil_id)
+        ->paginate(2);
+        // return view('frontend.user.wilayahsort',[
+        //     'user' => $user,
+        // ]);
+        $data = [
+            'user' => $user,
+        ];
+        if(count($data) > 0){
+            return view('frontend.user.wilayahsort',$data);
+        }
+        else{
+           return back()->with('sweet-alert','<script> window.onload = swal ( "Oops !" ,  "Kami tidak dapat menemukan wilayah tersebut!!" ,  "error" )</script>');
+        }
+    }
     public function create()
     {
         //
@@ -132,9 +155,12 @@ class AcaraFrontendController extends Controller
     {
        $idasli = base64_decode($wilayah_id);
         $user = acara::where('wilayah_id',$idasli)->paginate(2);
-
+        $recent = acara::where('statusAcara', 1)
+                  ->orderBy('created_at', 'desc')
+                  ->take(3)->get();
         $data = [
             'user' => $user,
+            'recent' =>$recent
         ];
         if(count($data) > 0){
             return view('frontend.user.index',$data);

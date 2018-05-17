@@ -1,7 +1,29 @@
 @extends('frontend.base')
+@section('headSection')
+<script type="text/javascript">
+  $(document).ready(function() {
+     @foreach(\App\modelWilayah::all() as $testwil)
+   $('#wil{{$testwil->id}}').click(function(){
+   var wil = $("#wil{{$testwil->id}}").val(); 
+    //alert(cat);
+    $.ajax({
+      type: 'get',
+      dataType:'html',
+      url: '{{url('/wilayahsort')}}',
+      data: 'wil_id=' + wil,
+      success:function(response){
+        //console.log(response);
+        $("#wilayahData").html(response);
+      }
+    });
+  });
+  @endforeach    
+ });
+</script>
+@endsection
 @section('section')
 @if(\Illuminate\Support\Facades\Session::has('alert-success'))
-    {!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
+{!! \Illuminate\Support\Facades\Session::get('alert-success') !!}
 @endif
 <!--begin blog -->
 <section class="section-white small-padding">
@@ -18,8 +40,7 @@
 
         <!--begin blog-item -->
         <div class="blog-item">
-
-          <!--begin popup image -->
+          <div id="wilayahData">
           @foreach($user as $x)
           <div class="popup-wrapper">
             <div class="popup-gallery">
@@ -29,7 +50,7 @@
           <!--begin popup image -->
 
           <!--begin blog-item_inner -->
-          <div class="blog-item-inner" style="width: 100%;">
+          <div class="blog-item-inner margin-top-10" style="width: 100%;">
             <h3 class="blog-title"><a href="{{url('acara/'.base64_encode($x->id))}}">{{ $x->judul }}</a></h3>
             <p class="blog-icons" style="font-color:#191010; font-size: 11pt">Rp. {{number_format($x->salary , "2", ",", ".") }}</p>
 
@@ -44,7 +65,9 @@
             <li class="next">
               {{ $user->links() }}
             </li>
-          </ul>
+          </ul> 
+          </div>
+          <!--begin popup image -->
           <!--end blog-item-inner -->
         </div>
       </div>
@@ -74,22 +97,29 @@
           </div>
           @endforeach
         </div>
-       {{-- <div>
-        <h5>Wilayah:</h5>                    
-        <ul class="tags">
-          @foreach(\App\modelWilayah::all() as $y)
-          <li class="text-center">
-            <a href="{{url('home/wilayah/'.base64_encode($x->wilayah_id))}}">{{$y -> nama }}</a>
-          </li>
-          @endforeach  
-        </ul>
-        <!--end tags --> 
-      </div> --}}
-    </div>
 
-    <!--begin recent_posts -->
+        {{-- 
+          <form role="form" action="#" method="get" enctype="multipart/form-data"> --}}  
+            <div class="col-md-12 margin-top-10">
+             <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Pilih Wilayah Acara
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                  @foreach(\App\modelWilayah::all() as $cihuy)
+                  <li class="option" id="wil{{$cihuy->id}}" value="{{ $cihuy->id }}">{{ $cihuy->nama }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            </div>
+      {{-- <div class="col-md-12 margin-top-20">
+        <button type="submit" class="col-lg-4 btn btn-primary">Cari</button>
+      </div> --}}
+    {{-- </form> --}}
   </div>
-  <!--end col-sm-4-->
+
+  <!--begin recent_posts -->
+</div>
+<!--end col-sm-4-->
 
 </div>
 <!--end row-->  

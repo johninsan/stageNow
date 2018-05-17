@@ -39,7 +39,7 @@
 
                     <!--begin copyright -->
                     <div class="copyright ">
-                        <p>© 2017 StageNow. Created by <a href="http://pnj.ac.id" target="_blank">StageNow</a></p>
+                        <p>© 2018-{{Carbon\carbon::now()->year}} StageNow. Created by <a href="http://pnj.ac.id" target="_blank">StageNow</a></p>
 
                     </div>
                     <!--end copyright -->
